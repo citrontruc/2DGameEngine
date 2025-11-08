@@ -1,6 +1,5 @@
-def main():
-    print("Hello from 2dgame!")
+from Game.GameManager import run
 
 
 if __name__ == "__main__":
-    main()
+    run()
