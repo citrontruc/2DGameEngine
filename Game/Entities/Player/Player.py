@@ -22,11 +22,9 @@ class Player(IControllable):
         )
 
     def update(self, delta_time: float, event_list: list) -> None:
-        print(f"player position 1 {self.position}")
         input_dict = self.player_input_translator.retrieve_input(event_list)
         action_dict = self.player_input_translator.translate_input(input_dict)
         self.handle_input(delta_time, action_dict)
-        print(f"player position 2 {self.position}")
 
     def handle_input(self, delta_time: float, action_dict: dict) -> None:
         self.position[0] += action_dict["MOVE"][0] * self.speed * delta_time
