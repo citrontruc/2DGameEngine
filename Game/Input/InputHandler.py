@@ -2,8 +2,6 @@
 A class to handle user input and update our input component.
 TODO: allow keybinding by using an intermediate class to translate keys to controls
 """
-import pygame
-
 from Game.Input.Wrappers.JoystickInputHandler import JoystickInputHandler
 from Game.Input.Wrappers.KeyboardInputHandler import KeyboardInputHandler
 from Game.Input.Wrappers.MouseInputHandler import MouseInputHandler
