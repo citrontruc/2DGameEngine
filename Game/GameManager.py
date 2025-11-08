@@ -9,13 +9,15 @@ def run():
     # pygame setup
     pygame.init()
     screen = pygame.display.set_mode((1280, 720))
+    pygame.joystick.init()
     clock = pygame.time.Clock()
     running = True
 
     while running:
+        event_list = pygame.event.get()
         # poll for events
         # pygame.QUIT event means the user clicked X to close your window
-        for event in pygame.event.get():
+        for event in event_list:
             if event.type == pygame.QUIT:
                 running = False
 
@@ -23,8 +25,7 @@ def run():
         screen.fill("purple")
 
         # RENDER YOUR GAME HERE
-        input_handler.show_keys()
-        print(input_handler.show_mouse())
+        input_handler.check_for_joystick(event_list)
 
         # flip() the display to put your work on screen
         pygame.display.flip()

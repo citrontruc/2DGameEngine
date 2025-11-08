@@ -1,3 +1,6 @@
+"""
+A simple class to retrieve user keyboard input.
+"""
 from enum import Enum
 
 from pygame import mouse
@@ -12,6 +15,11 @@ class MouseControl(Enum):
 class MouseInputHandler:
     def __init__(self):
         pass
+
+    def get_all_mouse_input(self) -> dict:
+        mouse_dict = {"position": self.get_position(),
+                      "button_press": self.get_button()}
+        return mouse_dict
 
     def get_position(self) -> tuple:
         return mouse.get_pos()
