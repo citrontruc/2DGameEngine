@@ -9,7 +9,7 @@ class PlayerInputTranslator:
         self.input_handler = InputHandler()
         self.keyboard_translation_dict = {
             "JUMP" : "space_bar",
-            "HIT" : "enter",
+            "ACTION" : "enter",
             "MOVE" : "arrow_keys"
         }
 
@@ -26,7 +26,7 @@ class PlayerInputTranslator:
         keyboard_control = player_input_dict["keyboard"]
         action_dict = {
             "JUMP" : False,
-            "HIT" : False,
+            "ACTION" : False,
             "MOVE" : (0, 0)
         }
         for action in self.keyboard_translation_dict.keys():

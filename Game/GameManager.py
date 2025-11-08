@@ -1,11 +1,11 @@
 import pygame
 
-from Game.Input.InputHandler import InputHandler
+from Game.Scenes.Levels.Level1 import Level
 
 
 class GameManager:
     def __init__(self) -> None:
-        self.input_handler = InputHandler()
+        self.scene = Level()
         self.clock = pygame.time.Clock()
         self.screen = pygame.display.set_mode((1280, 720))
 
@@ -28,12 +28,11 @@ class GameManager:
                 if event.type == pygame.QUIT:
                     running = False
 
-            # delta_time = self.get_delta_time()
+            delta_time = self.get_delta_time()
+            self.scene.update(delta_time, event_list)
 
             # fill the screen with a color to wipe away anything from last frame
-            self.screen.fill("purple")
-
-            # RENDER YOUR GAME HERE
+            self.scene.draw(self.screen)
 
             # flip() the display to put your work on screen
             pygame.display.flip()
