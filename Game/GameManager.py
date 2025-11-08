@@ -1,35 +1,43 @@
-# Example file showing a basic pygame "game loop"
 import pygame
 
 from Game.Input.InputHandler import InputHandler
 
 
-def run():
-    input_handler = InputHandler()
-    # pygame setup
-    pygame.init()
-    screen = pygame.display.set_mode((1280, 720))
-    pygame.joystick.init()
-    clock = pygame.time.Clock()
-    running = True
+class GameManager:
+    def __init__(self) -> None:
+        self.input_handler = InputHandler()
+        self.clock = pygame.time.Clock()
+        self.screen = pygame.display.set_mode((1280, 720))
 
-    while running:
-        event_list = pygame.event.get()
-        # poll for events
-        # pygame.QUIT event means the user clicked X to close your window
-        for event in event_list:
-            if event.type == pygame.QUIT:
-                running = False
+    def initialize_game(self):
+        pygame.init()
+        pygame.joystick.init()
 
-        # fill the screen with a color to wipe away anything from last frame
-        screen.fill("purple")
+    def get_delta_time(self) -> float:
+        delta_time = self.clock.get_time() / 1000  # Convert to milliseconds
+        return delta_time
 
-        # RENDER YOUR GAME HERE
-        input_handler.check_for_joystick(event_list)
+    def run_game_loop(self):
+        running = True
 
-        # flip() the display to put your work on screen
-        pygame.display.flip()
+        while running:
+            event_list = pygame.event.get()
+            # poll for events
+            # pygame.QUIT event means the user clicked X to close your window
+            for event in event_list:
+                if event.type == pygame.QUIT:
+                    running = False
 
-        clock.tick(60)  # limits FPS to 60
+            # delta_time = self.get_delta_time()
 
-    pygame.quit()
+            # fill the screen with a color to wipe away anything from last frame
+            self.screen.fill("purple")
+
+            # RENDER YOUR GAME HERE
+
+            # flip() the display to put your work on screen
+            pygame.display.flip()
+
+            self.clock.tick(60)  # limits FPS to 60
+
+        pygame.quit()

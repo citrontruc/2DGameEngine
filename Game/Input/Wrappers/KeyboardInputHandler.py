@@ -1,6 +1,7 @@
 """
 A simple class to retrieve user keyboard input.
 """
+from enum import auto
 from enum import Enum
 
 import pygame
@@ -8,12 +9,12 @@ from pygame import key
 
 
 class KEYBOARD(Enum):
-    SPACE_BAR = 1
-    ENTER_BUTTON = 2
-    ARROW_DOWN = 3
-    ARROW_UP = 4
-    ARROW_RIGHT = 5
-    ARROW_LEFT = 6
+    SPACE_BAR = auto()
+    ENTER_BUTTON = auto()
+    ARROW_DOWN = auto()
+    ARROW_UP = auto()
+    ARROW_RIGHT = auto()
+    ARROW_LEFT = auto()
 
 
 class KeyboardInput:

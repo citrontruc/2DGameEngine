@@ -19,12 +19,13 @@ class InputHandler:
         keys = self.keyboard_input_handler.get_all_keyboard_input()
         return keys
 
-    def get_mouse(self):
+    def get_mouse(self) -> dict:
         mouse_dict = self.mouse_input_handler.get_all_mouse_input()
         return mouse_dict
 
-    def check_for_joystick(self, event_list: list):
-        if not self.joystick_input_handler.has_joystick():
-            self.joystick_input_handler.check_joystick_connect(event_list)
-        if self.joystick_input_handler.has_joystick():
-            self.joystick_input_handler.check_joystick_disconnect(event_list)
+    def check_for_joystick(self, event_list: list) -> bool:
+        return self.joystick_input_handler.handle_joystick_connection(event_list)
+
+    def get_joystick_input(self) -> dict:
+        joystick_input_dict = self.joystick_input_handler.get_joystick_input()
+        return joystick_input_dict
