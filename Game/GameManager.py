@@ -1,8 +1,11 @@
 # Example file showing a basic pygame "game loop"
 import pygame
 
+from Game.Input.InputHandler import InputHandler
+
 
 def run():
+    input_handler = InputHandler()
     # pygame setup
     pygame.init()
     screen = pygame.display.set_mode((1280, 720))
@@ -20,6 +23,8 @@ def run():
         screen.fill("purple")
 
         # RENDER YOUR GAME HERE
+        input_handler.show_keys()
+        print(input_handler.show_mouse())
 
         # flip() the display to put your work on screen
         pygame.display.flip()
