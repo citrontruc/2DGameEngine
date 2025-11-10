@@ -8,8 +8,8 @@ from Game.Scenes.IScene import IScene
 
 
 class Level(IScene):
-    def __init__(self) -> None:
-        self.load()
+    def __init__(self, level_information: dict) -> None:
+        pass
 
     def load(self) -> None:
         self.player = Player()
