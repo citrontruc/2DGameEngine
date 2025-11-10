@@ -12,6 +12,8 @@ class GameManager:
     def initialize_game(self):
         pygame.init()
         pygame.joystick.init()
+        level = self.scene_manager.get_level_from_id("1")
+        self.scene_manager.transition_to(level)
 
     def get_delta_time(self) -> float:
         delta_time = self.clock.get_time() / 1000  # Convert to milliseconds

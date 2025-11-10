@@ -7,7 +7,7 @@ import os
 
 class JsonLevelReader:
     def __init__(self) -> None:
-        self.level_folder = "Game/Assets"
+        self.level_folder = "Game/Assets/LevelJson"
         self.level_dict = {}
         level_directory_list = os.listdir(self.level_folder)
         for level_json in level_directory_list:
@@ -18,4 +18,4 @@ class JsonLevelReader:
     def get_level(self, level_id: str) -> dict:
         if level_id in self.level_dict.keys():
             return self.level_dict[level_id]
-        raise IndexError(f"ID of level you asked for is incorrect{level_id}")
+        raise IndexError(f"ID of level you asked for is incorrect {level_id}")
