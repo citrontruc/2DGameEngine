@@ -1,17 +1,19 @@
 import pygame
 
-from Game.Scenes.Levels.Level1 import Level
+from Game.Scenes.SceneManager import SceneManager
 
 
 class GameManager:
     def __init__(self) -> None:
-        self.scene = Level()
         self.clock = pygame.time.Clock()
         self.screen = pygame.display.set_mode((1280, 720))
+        self.scene_manager = SceneManager()
 
     def initialize_game(self):
         pygame.init()
         pygame.joystick.init()
+        level = self.scene_manager.get_level_from_id("1")
+        self.scene_manager.transition_to(level)
 
     def get_delta_time(self) -> float:
         delta_time = self.clock.get_time() / 1000  # Convert to milliseconds
@@ -29,10 +31,10 @@ class GameManager:
                     running = False
 
             delta_time = self.get_delta_time()
-            self.scene.update(delta_time, event_list)
+            self.scene_manager.update(delta_time, event_list)
 
             # fill the screen with a color to wipe away anything from last frame
-            self.scene.draw(self.screen)
+            self.scene_manager.draw(self.screen)
 
             # flip() the display to put your work on screen
             pygame.display.flip()

@@ -1,0 +1,38 @@
+{
+  "level_id": "1",
+  "name": "Forest Beginning",
+  "background": {
+    "image": "assets/backgrounds/forest.png",
+    "music": "assets/music/forest_theme.ogg"
+  },
+  "player_start": {
+    "x": 100,
+    "y": 400
+  },
+  "tileset": {
+    "image": "assets/tiles/forest_tiles.png",
+    "tile_size": 32
+  },
+  "platforms": [
+    { "x": 0, "y": 480, "width": 640, "height": 32, "type": "ground" },
+    { "x": 200, "y": 400, "width": 128, "height": 32, "type": "wood" },
+    { "x": 400, "y": 300, "width": 96, "height": 32, "type": "stone" }
+  ],
+  "enemies": [
+    { "type": "slime", "x": 250, "y": 368, "patrol_range": 100, "speed": 1 },
+    { "type": "bat", "x": 500, "y": 250, "patrol_range": 150, "speed": 2 }
+  ],
+  "collectibles": [
+    { "type": "coin", "x": 220, "y": 360 },
+    { "type": "coin", "x": 420, "y": 260 },
+    { "type": "heart", "x": 600, "y": 440 }
+  ],
+  "goal": {
+    "x": 620,
+    "y": 420,
+    "width": 32,
+    "height": 64,
+    "type": "door",
+    "next_level": 2
+  }
+}

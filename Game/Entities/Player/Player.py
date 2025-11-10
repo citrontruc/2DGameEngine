@@ -8,10 +8,10 @@ from Game.Entities.Player.PlayerInputTranslator import PlayerInputTranslator
 
 
 class Player(IControllable):
-    def __init__(self) -> None:
+    def __init__(self, initial_position: dict) -> None:
         self.player_input_translator = PlayerInputTranslator()
         self.speed = 20
-        self.position = [100, 100]
+        self.position = [int(initial_position["x"]), int(initial_position["y"])]
         self.dimension_x = 10
         self.dimension_y = 10
         self.sprite = pygame.Rect(
