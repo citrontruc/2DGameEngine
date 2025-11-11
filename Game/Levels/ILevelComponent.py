@@ -8,12 +8,17 @@ from abc import abstractmethod
 
 class ILevelComponent(ABC):
     @abstractmethod
-    def load(self, world):
+    def load(self):
         """Retrieve the elements associated to the component (graphics, sound, effects)."""
         pass
 
     @abstractmethod
-    def update(self, dt):
+    def provides_support(self) -> bool:
+        """Check if the element can be stepped on and serve as a platform."""
+        pass
+
+    @abstractmethod
+    def update(self, delta_time: float):
         """Update component logic each frame if needed."""
         pass
 
