@@ -1,12 +1,13 @@
 """
 A class to handle transitions between scenes (menus and levels).
 """
+from Game.Levels.JsonLevelReader import JsonLevelReader
 from Game.Scenes.IScene import IScene
-from Game.Scenes.Levels.JsonLevelReader import JsonLevelReader
 from Game.Scenes.Levels.Level import Level
+from Game.Services.Singleton import SingletonMeta
 
 
-class SceneManager:
+class SceneManager(metaclass=SingletonMeta):
     def __init__(self) -> None:
         self.level_reader = JsonLevelReader()
         self.current_scene = None
