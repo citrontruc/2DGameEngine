@@ -13,10 +13,10 @@ class Player(IControllable):
         self.player_input_translator = PlayerInputTranslator()
 
         # region Player Characteristics
-        self.speed = 20
+        self.speed = 100
         self.position = [int(initial_position["x"]), int(initial_position["y"])]
-        self.dimension_x = 10
-        self.dimension_y = 10
+        self.dimension_x = 20
+        self.dimension_y = 20
         self.sprite = pygame.Rect(
             self.position[0],
             self.position[1],
@@ -44,7 +44,9 @@ class Player(IControllable):
 
     def apply_gravity(self, delta_time: float):
         if not self.is_grounded:
-            self.position[1] += int(delta_time * Constants.GRAVITY_FORCE)
+            pass
+            # Change speed rather than position.
+            # self.position[1] += int(delta_time * Constants.GRAVITY_FORCE)
 
     def check_if_grounded(self):
         self.is_grounded = True
