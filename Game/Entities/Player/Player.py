@@ -3,6 +3,7 @@ A test player square that you can move around.
 """
 import pygame
 
+import Game.Utils.GameConstants as Constants
 from Game.Entities.IControllable import IControllable
 from Game.Entities.Player.PlayerInputTranslator import PlayerInputTranslator
 
@@ -10,6 +11,8 @@ from Game.Entities.Player.PlayerInputTranslator import PlayerInputTranslator
 class Player(IControllable):
     def __init__(self, initial_position: dict) -> None:
         self.player_input_translator = PlayerInputTranslator()
+
+        # region Player Characteristics
         self.speed = 20
         self.position = [int(initial_position["x"]), int(initial_position["y"])]
         self.dimension_x = 10
@@ -20,6 +23,11 @@ class Player(IControllable):
             self.dimension_x,
             self.dimension_y
         )
+        # endregion
+
+        # region Status variables
+        self.is_grounded = True
+        # endregion
 
     def update(self, delta_time: float, event_list: list) -> None:
         input_dict = self.player_input_translator.retrieve_input(event_list)
@@ -33,6 +41,13 @@ class Player(IControllable):
             print("jump")
         if action_dict["ACTION"]:
             print("ACTION")
+
+    def apply_gravity(self, delta_time: float):
+        if not self.is_grounded:
+            self.position[1] += int(delta_time * Constants.GRAVITY_FORCE)
+
+    def check_if_grounded(self):
+        self.is_grounded = True
 
     def draw(self, window: pygame.Surface) -> None:
         self.sprite.x = self.position[0]
