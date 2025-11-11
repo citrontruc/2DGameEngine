@@ -18,20 +18,26 @@ class Level(IScene):
         self.enemies: list = level_information["enemies"]
         self.collectibles: list = level_information["collectibles"]
         self.goal: list = level_information["goal"]
+        self.player = self.create_player()
+        self.list_components = []
+
+    def create_player(self) -> Player:
+        return Player(self.player_start)
 
     def load(self) -> None:
         """
         Loads textures and sounds for the level.
         Creates the elements of the level.
         """
-        self.player = Player(self.player_start)
 
     def unload(self) -> None:
         pass
 
     def update(self, delta_time: float, event_list: list) -> None:
-        self.player.update(delta_time, event_list)
+        if self.player:
+            self.player.update(delta_time, event_list)
 
     def draw(self, window: Surface) -> None:
         window.fill("purple")
-        self.player.draw(window)
+        if self.player:
+            self.player.draw(window)

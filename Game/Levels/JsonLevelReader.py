@@ -4,8 +4,10 @@ A class to read the content of the json level folder and load all the levels.
 import json
 import os
 
+from Game.Services.Singleton import SingletonMeta
 
-class JsonLevelReader:
+
+class JsonLevelReader(metaclass=SingletonMeta):
     def __init__(self) -> None:
         self.level_folder = "Game/Assets/LevelJson"
         self.level_dict = {}
