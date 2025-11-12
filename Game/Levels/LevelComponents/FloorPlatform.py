@@ -15,29 +15,22 @@ class FloorPlatform(ILevelComponent):
         self.width = component_characteristics["width"]
         self.height = component_characteristics["height"]
         self.support = True
-        # self.check_dimensions()
         self.sprite = None
-
-    def check_dimensions(self):
-        if self.width // Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE != 0:
-            raise ValueError("Invalid dimensions for a component: width is invalid.")
-        if self.height // Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE != 0:
-            raise ValueError("Invalid dimensions for a component: height is invalid.")
 
     def initialize_surface(self):
         """
         We draw once our surface and we then reuse the same surface every time.
         TODO: have the method work with real sprites.
         """
-        floor_surface = pygame.Surface((self.width * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE,
-                                       self.height * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE))
+        floor_surface = pygame.Surface((Constants.scale(self.width),
+                                       Constants.scale(self.height)))
         for x in range(self.width):
             for y in range(self.height):
                 # Add tile image here to list
-                pygame.draw.rect(floor_surface, (100, 100, 255), (x * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE,
-                                                                  y * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE,
-                                                                  self.width * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE,
-                                                                  self.height * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE))
+                pygame.draw.rect(floor_surface, (100, 100, 255), (Constants.scale(x),
+                                                                  Constants.scale(y),
+                                                                  Constants.scale(self.width),
+                                                                  Constants.scale(self.height)))
                 # floor_surface.blit(tile[tile_idx], (x * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE, y * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE))
         return floor_surface
 

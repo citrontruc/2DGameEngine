@@ -17,8 +17,8 @@ class Player(IControllable):
         # region Player Characteristics
         self.speed = 100
         self.position = [int(initial_position["x"]), int(initial_position["y"])]
-        self.dimension_x = Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE
-        self.dimension_y = Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE
+        self.dimension_x = Constants.scale(1)
+        self.dimension_y = Constants.scale(1)
         self.sprite = pygame.Rect(
             self.position[0],
             self.position[1],
