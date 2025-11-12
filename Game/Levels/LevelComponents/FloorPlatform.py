@@ -16,9 +16,9 @@ class FloorPlatform(ILevelComponent):
         self.check_dimensions()
 
     def check_dimensions(self):
-        if self.width // Constants.MEASUREMENT_UNIT != 0:
+        if self.width // Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE != 0:
             raise ValueError("Invalid dimensions for a component: width is invalid.")
-        if self.height // Constants.MEASUREMENT_UNIT != 0:
+        if self.height // Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE != 0:
             raise ValueError("Invalid dimensions for a component: height is invalid.")
 
     def provides_support(self) -> bool:
