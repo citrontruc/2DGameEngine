@@ -1,5 +1,6 @@
 """
 A Component to generate level components from a level Json description.
+TODO: instead of creating components directly, create them through the LevelComponentFactory.
 """
 from Game.Levels.LevelComponents.FloorPlatform import FloorPlatform
 from Game.Scenes.Levels.Level import Level
