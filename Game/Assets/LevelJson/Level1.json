@@ -14,9 +14,9 @@
     "tile_size": 32
   },
   "platforms": [
-    { "x": 0, "y": 480, "width": 640, "height": 32, "type": "ground" },
-    { "x": 200, "y": 400, "width": 128, "height": 32, "type": "wood" },
-    { "x": 400, "y": 300, "width": 96, "height": 32, "type": "stone" }
+    { "x": 0, "y": 480, "width": 10, "height": 4, "type": "ground" },
+    { "x": 400, "y": 400, "width": 3, "height": 4, "type": "wood" },
+    { "x": 800, "y": 300, "width": 5, "height": 4, "type": "stone" }
   ],
   "enemies": [
     { "type": "slime", "x": 250, "y": 368, "patrol_range": 100, "speed": 1 },

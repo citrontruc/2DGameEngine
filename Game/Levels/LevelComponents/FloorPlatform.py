@@ -15,7 +15,7 @@ class FloorPlatform(ILevelComponent):
         self.width = component_characteristics["width"]
         self.height = component_characteristics["height"]
         self.support = True
-        self.check_dimensions()
+        # self.check_dimensions()
         self.sprite = None
 
     def check_dimensions(self):
@@ -29,10 +29,10 @@ class FloorPlatform(ILevelComponent):
         We draw once our surface and we then reuse the same surface every time.
         TODO: have the method work with real sprites.
         """
-        floor_surface = pygame.Surface(self.width * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE,
-                                       self.height * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE)
-        for y, row in enumerate(self.width):
-            for x, tile_idx in enumerate(self.height):
+        floor_surface = pygame.Surface((self.width * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE,
+                                       self.height * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE))
+        for x in range(self.width):
+            for y in range(self.height):
                 # Add tile image here to list
                 pygame.draw.rect(floor_surface, (100, 100, 255), (x * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE,
                                                                   y * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE,
@@ -60,4 +60,4 @@ class FloorPlatform(ILevelComponent):
         We then blit the surface without redrawing it every frame.
         TODO: check if the surface is on screen or not.
         """
-        surface.blit(self.sprite)
+        surface.blit(self.sprite, (self.x, self.y))

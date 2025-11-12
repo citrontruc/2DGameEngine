@@ -4,6 +4,8 @@ A class to create a simple level for the player to move in
 from pygame import Surface
 
 from Game.Entities.Player.Player import Player
+from Game.Levels.ILevelComponent import ILevelComponent
+from Game.Levels.LevelComponents.FloorPlatform import FloorPlatform
 from Game.Scenes.IScene import IScene
 
 
@@ -19,7 +21,7 @@ class Level(IScene):
         self.collectibles: list = level_information["collectibles"]
         self.goal: list = level_information["goal"]
         self.player = self.create_player()
-        self.list_components = []
+        self.list_components: list[ILevelComponent] = []
 
     def create_player(self) -> Player:
         return Player(self.player_start)
@@ -29,15 +31,23 @@ class Level(IScene):
         Loads textures and sounds for the level.
         Creates the elements of the level.
         """
+        for floor_platform in self.platforms:
+            platform = FloorPlatform(floor_platform)
+            platform.load()
+            self.list_components.append(platform)
 
     def unload(self) -> None:
         pass
 
     def update(self, delta_time: float, event_list: list) -> None:
+        for components in self.list_components:
+            components.update(delta_time)
         if self.player:
             self.player.update(delta_time, event_list)
 
     def draw(self, window: Surface) -> None:
-        window.fill("purple")
+        window.fill("black")
+        for components in self.list_components:
+            components.draw(window)
         if self.player:
             self.player.draw(window)
