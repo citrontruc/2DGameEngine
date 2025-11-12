@@ -4,6 +4,7 @@ A test player square that you can move around.
 import pygame
 
 import Game.Utils.GameConstants as Constants
+from Game.Camera.Camera import Camera
 from Game.Entities.IControllable import IControllable
 from Game.Entities.Player.PlayerInputTranslator import PlayerInputTranslator
 
@@ -11,12 +12,13 @@ from Game.Entities.Player.PlayerInputTranslator import PlayerInputTranslator
 class Player(IControllable):
     def __init__(self, initial_position: dict) -> None:
         self.player_input_translator = PlayerInputTranslator()
+        self.camera = Camera()
 
         # region Player Characteristics
         self.speed = 100
         self.position = [int(initial_position["x"]), int(initial_position["y"])]
-        self.dimension_x = 20
-        self.dimension_y = 20
+        self.dimension_x = Constants.scale(1)
+        self.dimension_y = Constants.scale(1)
         self.sprite = pygame.Rect(
             self.position[0],
             self.position[1],
@@ -51,7 +53,7 @@ class Player(IControllable):
     def check_if_grounded(self):
         self.is_grounded = True
 
-    def draw(self, window: pygame.Surface) -> None:
+    def draw(self, surface: pygame.Surface) -> None:
         self.sprite.x = self.position[0]
         self.sprite.y = self.position[1]
-        pygame.draw.rect(window, (255, 0, 0), self.sprite)
+        pygame.draw.rect(surface, (255, 0, 0), self.sprite)

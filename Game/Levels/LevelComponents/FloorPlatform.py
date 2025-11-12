@@ -1,6 +1,8 @@
 """
 A class to create and render the basic floor components.
 """
+import pygame
+
 import Game.Utils.GameConstants as Constants
 from Game.Levels.ILevelComponent import ILevelComponent
 
@@ -13,20 +15,31 @@ class FloorPlatform(ILevelComponent):
         self.width = component_characteristics["width"]
         self.height = component_characteristics["height"]
         self.support = True
-        self.check_dimensions()
+        self.sprite = None
 
-    def check_dimensions(self):
-        if self.width // Constants.MEASUREMENT_UNIT != 0:
-            raise ValueError("Invalid dimensions for a component: width is invalid.")
-        if self.height // Constants.MEASUREMENT_UNIT != 0:
-            raise ValueError("Invalid dimensions for a component: height is invalid.")
+    def initialize_surface(self):
+        """
+        We draw once our surface and we then reuse the same surface every time.
+        TODO: have the method work with real sprites.
+        """
+        floor_surface = pygame.Surface((Constants.scale(self.width),
+                                       Constants.scale(self.height)))
+        for x in range(self.width):
+            for y in range(self.height):
+                # Add tile image here to list
+                pygame.draw.rect(floor_surface, (100, 100, 255), (Constants.scale(x),
+                                                                  Constants.scale(y),
+                                                                  Constants.scale(self.width),
+                                                                  Constants.scale(self.height)))
+                # floor_surface.blit(tile[tile_idx], (x * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE, y * Constants.MEASUREMENT_UNIT * Constants.PIXEL_SIZE))
+        return floor_surface
 
     def provides_support(self) -> bool:
         return self.support
 
     def load(self):
         # TODO
-        return super().load()
+        self.sprite = self.initialize_surface()
 
     def update(self, delta_time: float):
         """
@@ -35,4 +48,9 @@ class FloorPlatform(ILevelComponent):
         pass
 
     def draw(self, surface):
-        return super().draw(surface)
+        """
+        When we load the level, we draw our surface with our floor.
+        We then blit the surface without redrawing it every frame.
+        TODO: check if the surface is on screen or not.
+        """
+        surface.blit(self.sprite, (self.x, self.y))
