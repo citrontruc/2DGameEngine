@@ -17,5 +17,5 @@ class IControllable(ABC):
         pass
 
     @abstractmethod
-    def draw(self, window: Surface) -> None:
+    def draw(self, surface: Surface) -> None:
         pass
