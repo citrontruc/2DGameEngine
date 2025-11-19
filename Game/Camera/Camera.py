@@ -1,6 +1,7 @@
 """
 A camera that focuses where the action is.
 """
+import Game.Utils.GameConstants as Constants
 from Game.Entities.IControllable import IControllable
 from Game.Services.Singleton import SingletonMeta
 
@@ -20,10 +21,16 @@ class Camera(metaclass=SingletonMeta):
         self.entity = entity
 
     def set_minimum_position(self, minimum_position: list):
-        self.min_position = minimum_position
+        self.min_position = [
+            minimum_position[0] + int(Constants.X_RESOLUTION / 2),
+            minimum_position[1] + int(Constants.Y_RESOLUTION / 2)
+        ]
 
     def set_maximum_position(self, maximum_position: list):
-        self.max_position = maximum_position
+        self.max_position = [
+            maximum_position[0] - int(Constants.X_RESOLUTION / 2),
+            maximum_position[1] - int(Constants.Y_RESOLUTION / 2)
+        ]
     # endregion
 
     def update(self):

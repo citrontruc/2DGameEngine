@@ -89,6 +89,20 @@ class Player(IControllable):
         self.is_grounded = True
 
     def draw(self, surface: pygame.Surface) -> None:
-        self.sprite.x = int(Constants.X_RESOLUTION / 2)
-        self.sprite.y = int(Constants.Y_RESOLUTION / 2)
+        displacement_x = int(Constants.X_RESOLUTION / 2)
+        displacement_y = int(Constants.Y_RESOLUTION / 2)
+
+        if self.position[0] < self.min_position[0] + displacement_x:
+            self.sprite.centerx = self.position[0]
+        elif self.position[0] > self.max_position[0] - displacement_x:
+            self.sprite.centerx = 2 * displacement_x - self.max_position[0] + self.position[0]
+        else:
+            self.sprite.centerx = displacement_x
+
+        if self.position[1] < self.min_position[1] + displacement_y:
+            self.sprite.centery = self.position[1]
+        elif self.position[1] > self.max_position[1] - displacement_y:
+            self.sprite.centery = 2 * displacement_y + self.position[1] - self.max_position[1]
+        else:
+            self.sprite.centery = displacement_y
         pygame.draw.rect(surface, (255, 0, 0), self.sprite)
