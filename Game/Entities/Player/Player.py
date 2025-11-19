@@ -13,7 +13,6 @@ from Game.Entities.Player.PlayerInputTranslator import PlayerInputTranslator
 class Player(IControllable):
     def __init__(self, initial_position: dict) -> None:
         self.player_input_translator = PlayerInputTranslator()
-        self.camera = Camera()
 
         # region Player Characteristics
         self.speed = 100
@@ -34,6 +33,11 @@ class Player(IControllable):
         # region Status variables
         self.is_grounded = True
         # endregion
+
+    # region Getters & Setters
+    def get_position(self) -> list:
+        return self.position
+    # endregion
 
     def update(self, delta_time: float, event_list: list) -> None:
         input_dict = self.player_input_translator.retrieve_input(event_list)

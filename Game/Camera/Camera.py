@@ -27,7 +27,8 @@ class Camera(metaclass=SingletonMeta):
     # endregion
 
     def update(self):
-        pass
+        if self.entity:
+            self.move(self.entity.get_position())
 
     def move(self, position: list):
         self.position = [
