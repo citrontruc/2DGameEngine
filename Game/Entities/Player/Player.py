@@ -5,7 +5,6 @@ import pygame
 
 import Game.Utils.GameConstants as Constants
 import Game.Utils.MathSupplement as MathSupplement
-from Game.Camera.Camera import Camera
 from Game.Entities.IControllable import IControllable
 from Game.Entities.Player.PlayerInputTranslator import PlayerInputTranslator
 
@@ -46,8 +45,9 @@ class Player(IControllable):
         self.move_player()
 
     def handle_input(self, delta_time: float, action_dict: dict) -> None:
-        self.velocity[0] += action_dict["MOVE"][0] * self.speed * delta_time
-        self.velocity[1] += action_dict["MOVE"][1] * self.speed * delta_time
+        normalized_movement = MathSupplement.normalize(action_dict["MOVE"])
+        self.velocity[0] += normalized_movement[0] * self.speed * delta_time
+        self.velocity[1] += normalized_movement[1] * self.speed * delta_time
         self.velocity[0] = MathSupplement.sign(self.velocity[0]) * min(abs(self.velocity[0]), self.max_velocity[0])
         self.velocity[1] = MathSupplement.sign(self.velocity[1]) * min(abs(self.velocity[1]), self.max_velocity[1])
         self.velocity[0] -= MathSupplement.sign(self.velocity[0]) * self.grift * delta_time

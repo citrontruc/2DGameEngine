@@ -27,14 +27,14 @@ class PlayerInputTranslator:
         action_dict = {
             "JUMP" : False,
             "ACTION" : False,
-            "MOVE" : (0, 0)
+            "MOVE" : [0, 0]
         }
         for action in self.keyboard_translation_dict.keys():
             if action == "MOVE":
-                action_dict["MOVE"] = (
+                action_dict["MOVE"] = [
                     int(keyboard_control["arrow_keys"][1]) - int(keyboard_control["arrow_keys"][0]),
                     int(keyboard_control["arrow_keys"][3]) - int(keyboard_control["arrow_keys"][2])
-                )
+                ]
             else:
                 action_dict[action] = keyboard_control[self.keyboard_translation_dict[action]]
         return action_dict
