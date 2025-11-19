@@ -13,12 +13,20 @@ class Player(IControllable):
     def __init__(self, initial_position: dict) -> None:
         self.player_input_translator = PlayerInputTranslator()
 
-        # region Player Characteristics
+        # region Speed Characteristics
         self.speed = 100
         self.velocity = [0., 0.]  # In our case velocity is a float to suport small increments
         self.max_velocity = [10, 10]
         self.grift = 10
+        # endregion
+
+        # region Position characteristics
         self.position = [int(initial_position["x"]), int(initial_position["y"])]
+        self.min_position = [0, 0]
+        self.max_position = [0, 0]
+        # endregion
+
+        # region Draw position
         self.dimension_x = Constants.scale(1)
         self.dimension_y = Constants.scale(1)
         self.sprite = pygame.Rect(
@@ -36,6 +44,12 @@ class Player(IControllable):
     # region Getters & Setters
     def get_position(self) -> list:
         return self.position
+
+    def set_minimum_position(self, minimum_position: list):
+        self.min_position = minimum_position
+
+    def set_maximum_position(self, maximum_position: list):
+        self.max_position = maximum_position
     # endregion
 
     def update(self, delta_time: float, event_list: list) -> None:
@@ -60,6 +74,10 @@ class Player(IControllable):
     def move_player(self):
         self.position[0] += int(self.velocity[0])
         self.position[1] += int(self.velocity[1])
+        self.position = [
+            min(max(self.position[0], self.min_position[0]), self.max_position[0]),
+            min(max(self.position[1], self.min_position[1]), self.max_position[1])
+        ]
 
     def apply_gravity(self, delta_time: float):
         if not self.is_grounded:
@@ -71,6 +89,6 @@ class Player(IControllable):
         self.is_grounded = True
 
     def draw(self, surface: pygame.Surface) -> None:
-        self.sprite.x = self.position[0]
-        self.sprite.y = self.position[1]
+        self.sprite.x = int(Constants.X_RESOLUTION / 2)
+        self.sprite.y = int(Constants.Y_RESOLUTION / 2)
         pygame.draw.rect(surface, (255, 0, 0), self.sprite)
