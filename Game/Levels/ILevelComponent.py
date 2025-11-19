@@ -23,6 +23,6 @@ class ILevelComponent(ABC):
         pass
 
     @abstractmethod
-    def draw(self, surface):
+    def draw(self, surface, displacement_list: list):
         """Render the component."""
         pass

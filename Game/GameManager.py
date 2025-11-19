@@ -1,3 +1,6 @@
+"""
+A class to handle the game, launch it and handle its update.
+"""
 import pygame
 
 import Game.Utils.GameConstants as Constants
@@ -7,7 +10,7 @@ from Game.Scenes.SceneManager import SceneManager
 class GameManager:
     def __init__(self) -> None:
         self.clock = pygame.time.Clock()
-        self.screen = pygame.display.set_mode((Constants.X_RESOLUION, Constants.Y_RESOLUTION))
+        self.screen = pygame.display.set_mode((Constants.X_RESOLUTION, Constants.Y_RESOLUTION))
         self.scene_manager = SceneManager()
 
     def initialize_game(self):

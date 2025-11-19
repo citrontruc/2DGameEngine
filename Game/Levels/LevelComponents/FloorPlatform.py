@@ -47,10 +47,10 @@ class FloorPlatform(ILevelComponent):
         """
         pass
 
-    def draw(self, surface):
+    def draw(self, surface, displacement_list):
         """
         When we load the level, we draw our surface with our floor.
         We then blit the surface without redrawing it every frame.
         TODO: check if the surface is on screen or not.
         """
-        surface.blit(self.sprite, (self.x, self.y))
+        surface.blit(self.sprite, (self.x - displacement_list[0], self.y - displacement_list[1]))

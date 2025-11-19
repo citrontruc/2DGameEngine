@@ -1,9 +1,10 @@
 """
 A class to define Singletons
 """
+from abc import ABCMeta
 
 
-class SingletonMeta(type):
+class SingletonMeta(ABCMeta):
     _instances = {}
 
     def __call__(cls, *args, **kwargs):

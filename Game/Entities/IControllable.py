@@ -9,6 +9,10 @@ from pygame import Surface
 
 class IControllable(ABC):
     @abstractmethod
+    def get_position(self) -> list:
+        pass
+
+    @abstractmethod
     def handle_input(self, delta_time: float, action_dict: dict) -> None:
         pass
 
