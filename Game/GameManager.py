@@ -1,3 +1,6 @@
+"""
+A class to handle the game, launch it and handle its update.
+"""
 import pygame
 
 import Game.Utils.GameConstants as Constants

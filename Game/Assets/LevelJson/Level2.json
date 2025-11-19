@@ -5,6 +5,12 @@
     "image": "assets/backgrounds/forest.png",
     "music": "assets/music/forest_theme.ogg"
   },
+  "limit": {
+    "min_x": 0,
+    "min_y": 0,
+    "max_x": 4000,
+    "max_y": 4000
+  },
   "player_start": {
     "x": 100,
     "y": 400

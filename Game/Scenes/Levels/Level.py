@@ -3,6 +3,7 @@ A class to create a simple level for the player to move in
 """
 from pygame import Surface
 
+from Game.Camera.Camera import Camera
 from Game.Entities.Player.Player import Player
 from Game.Levels.ILevelComponent import ILevelComponent
 from Game.Levels.LevelComponents.FloorPlatform import FloorPlatform
@@ -22,6 +23,8 @@ class Level(IScene):
         self.goal: list = level_information["goal"]
         self.player = self.create_player()
         self.list_components: list[ILevelComponent] = []
+        self.camera = Camera()
+        self.camera.set_entity(self.player)
 
     def create_player(self) -> Player:
         return Player(self.player_start)
