@@ -4,11 +4,15 @@ TODO: instead of creating components directly, create them through the LevelComp
 """
 from Game.Levels.LevelComponents.FloorPlatform import FloorPlatform
 from Game.Scenes.Levels.Level import Level
-from Game.Services.Singleton import SingletonMeta
+from Game.Services.IFactory import IFactory
 
 
-class LevelComponentsFactory(metaclass=SingletonMeta):
+class LevelComponentsFactory(IFactory):
     def __init__(self) -> None:
+        pass
+
+    # A method to create the whole level at once.
+    def create(self):
         pass
 
     def create_level(self, level_description: dict) -> Level:
