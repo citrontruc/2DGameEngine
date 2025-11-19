@@ -17,7 +17,7 @@ class Player(IControllable):
 
         # region Player Characteristics
         self.speed = 100
-        self.velocity = [0., 0.]
+        self.velocity = [0., 0.]  # In our case velocity is a float to suport small increments
         self.max_velocity = [10, 10]
         self.grift = 10
         self.position = [int(initial_position["x"]), int(initial_position["y"])]
